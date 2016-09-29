@@ -16,9 +16,35 @@ var port = process.env.PORT || 8080;
 
 var router = express.Router();
 
+router.use(function (req, res, next) {
+    console.log('Something is happening.');
+    next();
+});
+
 router.get('/', function (req, res) {
     res.json({message: 'Hello world!'});
 });
+
+router.route('/bears')
+    .get(function (req, res) {
+        Bear.find(function(err, bears) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(bears);
+        })
+    })
+    .post(function (req, res) {
+        var bear = new Bear();
+        bear.name = req.body.name;
+
+        bear.save(function (err) {
+            if (err) {
+                res.send(err);
+            }
+            res.json({message: 'Bear created!'});
+        });
+    });
 
 app.use('/api', router);
 
