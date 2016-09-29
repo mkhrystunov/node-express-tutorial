@@ -3,6 +3,11 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var Bear = require('./app/models/bear');
+
+mongoose.connect('mongodb://localhost27017/node-express-tutorial');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
