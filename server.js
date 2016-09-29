@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 
 var Bear = require('./app/models/bear');
 
-mongoose.connect('mongodb://localhost27017/node-express-tutorial');
+mongoose.connect('mongodb://localhost:27017/node-express-tutorial');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
